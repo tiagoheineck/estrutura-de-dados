@@ -1,5 +1,6 @@
 # include <stdio.h>
 
+# define FATOR 1.8
 
 int main (void )
 {
@@ -7,7 +8,7 @@ int main (void )
     float f;
     printf("Digite os graus em Celsius \n");
     scanf("%f", &c);
-    f = 1.8 * c + 32;
+    f = FATOR * c + 32;
     printf("Isso quer dizer que são %f Fahrenheit \n",f);
     return 0;
 }
