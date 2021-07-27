@@ -1,3 +1,6 @@
+// As constantes são declaradas no começo do programa com 
+// # define NOME valor
+
 # include <stdio.h>
 
 # define FATOR 1.8
