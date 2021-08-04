@@ -1,5 +1,5 @@
 # Fonte: https://devblogs.microsoft.com/cppblog/c-development-with-docker-containers-in-visual-studio-code/
-FROM gcc:4.9
+FROM gcc:11.2.0
 
 COPY ./ /usr/src/codigos
 
