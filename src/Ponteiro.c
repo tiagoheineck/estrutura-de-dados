@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <locale.h>
 
+/*  Rodar com -w para evitar os warnings gerem parada gcc -o build/Ponteiro src/Ponteiro.c -w */
+
 void muitasoperacoes(int a, int b, int *p, int*q) //note que essa função recebe dois valores e dois ponteiros
 {
 	*p = a + b;
