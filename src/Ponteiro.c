@@ -25,6 +25,8 @@ int main(int argc, char *argv[])
 
 	int *p; // aqui estamos declarando uma variável ponteiro
 
+	printf("A variável p tem um tamanho de %i bytes \n", sizeof(p));
+	
 	a = 5;
 	p = a; // isso aqui gera um Warning pelo compilador
 
@@ -36,7 +38,7 @@ int main(int argc, char *argv[])
 	// convertidos em inteiro
 	printf("Esse valor é de p %i e esse o endereço de memória de a %i \n", p, &a);
 	printf("Esse é o endereço de memória real de p %p e esse o endereço de memória real de a %p \n", p, &a);
-	printf("Se quiser imprimir o valor de p tem que usar %i \n", *p);
+	printf("Se quiser imprimir o valor de p tem que usar porcento i e *p %i \n", *p);
 	printf("Veja que os valores são exatamente iguais \n");
 
 	*p = 2;
@@ -45,6 +47,7 @@ int main(int argc, char *argv[])
 
 	/* Agora vamos brincar um pouco com funções */
 	muitasoperacoes(5, 7, &a, &b);
+	
 	printf("O valor de a é %i e o valor de b é %i \n", a, b);
 
 	return 0;
