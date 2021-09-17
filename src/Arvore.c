@@ -9,9 +9,22 @@ struct arvno
     ArvNo* dir;
 };
 
+struct arv3no
+{
+    char info;
+    Arv3No* esq;
+    Arv3No* meio;
+    Arv3No* dir;
+};
+
 struct arv
 {
     ArvNo* raiz;
+};
+
+struct arv3
+{
+    Arv3No* raiz;
 };
 
 ArvNo *arv_criano(char c, ArvNo *esquerda, ArvNo *direita)
@@ -23,9 +36,26 @@ ArvNo *arv_criano(char c, ArvNo *esquerda, ArvNo *direita)
     return p;
 }
 
+Arv3No *arv3_criano(char c, Arv3No *esquerda, Arv3No *meio ,Arv3No *direita)
+{
+    Arv3No* p = (Arv3No*)malloc(sizeof(Arv3No));
+    p->info = c;
+    p->esq = esquerda;
+    p->meio = meio;
+    p->dir = direita;
+    return p;
+}
+
 Arv *arv_cria(ArvNo* r)
 {
     Arv* a = (Arv *)malloc(sizeof(Arv));
+    a->raiz = r;
+    return a;
+}
+
+Arv3* arv3_cria(Arv3No* r)
+{
+    Arv3* a = (Arv3*)malloc(sizeof(Arv3));
     a->raiz = r;
     return a;
 }
@@ -46,6 +76,18 @@ static void imprime(ArvNo* r)
         imprime(r->dir);
     }
 }
+
+static void imprime3No(Arv3No* r)
+{
+    if (r != NULL)
+    {
+        printf("%c", r->info);
+        imprime3No(r->esq);
+        imprime3No(r->meio);
+        imprime3No(r->dir);
+    }
+}
+
 
 static void imprime2(ArvNo* r)
 {
@@ -245,8 +287,13 @@ int main()
     ArvNo* b = arv_criano('b', NULL, d);
     ArvNo* raiz = arv_criano('a', b, c);
 
-    Arv* a = arv_cria(raiz);
+    Arv3No* x = arv3_criano('x', NULL, NULL, NULL);
+    Arv3No* y = arv3_criano('y', NULL, NULL, NULL);
+    Arv3No* z = arv3_criano('z', y, x, NULL);
+    Arv3* u = arv3_cria(z);
 
+    Arv* a = arv_cria(raiz);
+    imprime3No(z);
     arv_imprime(a);
     int altura_de_a = arv_altura(a);
     imprime2(raiz);
