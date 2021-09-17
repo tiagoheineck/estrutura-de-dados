@@ -14,12 +14,12 @@ struct arv
     ArvNo* raiz;
 };
 
-ArvNo *arv_criano(char c, ArvNo *esq, ArvNo *dir)
+ArvNo *arv_criano(char c, ArvNo *esquerda, ArvNo *direita)
 {
     ArvNo* p = (ArvNo*)malloc(sizeof(ArvNo));
     p->info = c;
-    p->esq = esq;
-    p->dir = dir;
+    p->esq = esquerda;
+    p->dir = direita;
     return p;
 }
 
@@ -41,7 +41,7 @@ static void imprime(ArvNo* r)
 {
     if (r != NULL)
     {
-        printf("% c ", r->info);
+        printf("%c", r->info);
         imprime(r->esq);
         imprime(r->dir);
     }
@@ -55,6 +55,17 @@ static void imprime2(ArvNo* r)
         imprime2(r->esq);
         printf("% c ", r->info);
         imprime2(r->dir);
+    }
+}
+
+static void imprime3(ArvNo* r)
+{
+    /* Em relação a árvore, para árvore binária de busca a ordem de percurso é invertida para explorar a propriedade de ordenação */
+    if (r != NULL)
+    {
+        imprime2(r->esq);    
+        imprime2(r->dir);
+        printf("% c ", r->info);
     }
 }
 
@@ -227,17 +238,19 @@ int arv_altura(Arv* a)
 
 int main()
 {
-    Arv* a = arv_cria(
-        arv_criano('a',
-                   arv_criano('b',
-                              NULL,
-                              arv_criano('d', NULL, NULL)),
+    ArvNo* f = arv_criano('f', NULL, NULL);
+    ArvNo* e = arv_criano('e', NULL, NULL);
+    ArvNo* c = arv_criano('c', e, f);
+    ArvNo* d = arv_criano('d', NULL, NULL);
+    ArvNo* b = arv_criano('b', NULL, d);
+    ArvNo* raiz = arv_criano('a', b, c);
 
-                   arv_criano('c',
-                              arv_criano('e', NULL, NULL), arv_criano('f', NULL, NULL))));
+    Arv* a = arv_cria(raiz);
 
     arv_imprime(a);
     int altura_de_a = arv_altura(a);
+    imprime2(raiz);
+    imprime3(raiz);
     printf("\n A altura da árvore é %i \n", altura_de_a);
 
     return 0;

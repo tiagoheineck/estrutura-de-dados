@@ -1,7 +1,7 @@
 typedef struct arv Arv;
 typedef struct arvno ArvNo;
 
-Arv* arv_cria(void);
+Arv* arv_cria(ArvNo* raiz);
 
 ArvNo* arv_criano(char c, ArvNo* e, ArvNo* d);
 
