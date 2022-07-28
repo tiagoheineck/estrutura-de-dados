@@ -3,13 +3,23 @@ FROM gcc:11.2.0
 
 RUN apt-get update && apt-get install gdb -y
 
-COPY ./ /usr/src/codigos
+ARG UID=1000
+ARG GID=1000
+ARG UNAME=dev
+RUN groupadd -g ${GID} -o ${UNAME}
+RUN useradd -m -u ${UID} -g ${GID} -o -s /bin/bash ${UNAME}
 
-WORKDIR /usr/src/codigos
+RUN mkdir /opt/codes
 
-RUN g++ -o build/HelloWorld src/HelloWorld.cpp
+RUN chown ${UID} /opt/codes 
+
+WORKDIR /opt/codes
+
+
+USER ${UID}
 
 CMD ["/bin/bash"]
+
 
 # Use o container assim
 # docker run -it --rm -v `pwd`:/usr/src/codigos cpp

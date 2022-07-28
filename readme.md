@@ -1,6 +1,6 @@
 # build 
 ```
-docker build . -t cpp
+docker build --build-arg UID="$(id -u)" --build-arg GID="$(id -g)" --build-arg UNAME="$(whoami)" . -t cpp
 ```
 
 # executar o container para acessar o bash
