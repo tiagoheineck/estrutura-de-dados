@@ -5,7 +5,7 @@ docker build --build-arg UID="$(id -u)" --build-arg GID="$(id -g)" --build-arg U
 
 # executar o container para acessar o bash
 ```
-docker run -it --rm -v `pwd`:/usr/src/codigos cpp
+docker run -it --rm -v `pwd`:/home/dev cpp
 ```
 
 # compilando no container

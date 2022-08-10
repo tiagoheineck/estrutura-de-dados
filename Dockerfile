@@ -1,24 +1,18 @@
 # Fonte: https://devblogs.microsoft.com/cppblog/c-development-with-docker-containers-in-visual-studio-code/
-FROM gcc:11.2.0
+FROM alpine:3.14
 
-RUN apt-get update && apt-get install gdb -y
+RUN apk add --no-cache g++ musl-dev
 
 ARG UID=1000
 ARG GID=1000
 ARG UNAME=dev
-RUN groupadd -g ${GID} -o ${UNAME}
-RUN useradd -m -u ${UID} -g ${GID} -o -s /bin/bash ${UNAME}
+RUN addgroup -S devgroup && adduser -S dev -G devgroup -u ${UID} -h /home/dev
 
-RUN mkdir /opt/codes
-
-RUN chown ${UID} /opt/codes 
-
-WORKDIR /opt/codes
-
+WORKDIR /home/dev
 
 USER ${UID}
 
-CMD ["/bin/bash"]
+CMD ["/bin/sh"]
 
 
 # Use o container assim
