@@ -2,16 +2,17 @@
 #include <string.h>
 #include "pessoa.h"
 
+
 int main (void)
 {
     char nome[200];    
     struct tm nascimento;    
     int ano, mes, dia;
 
-    printf("Digite seu nome: ");
-    scanf("%199[^\n]", &nome);
+    printf("Digite seu nome: \n");
+    scanf("%[^\n]s", nome);
 
-    printf("\n Digite a data de nascimento: formato dd/mm/YYYY: ");
+    printf("Digite a data de nascimento: formato dd/mm/YYYY: \n");
     scanf("%d/%d/%d",  &dia, &mes, &ano);        
 
     nascimento.tm_year = ano - 1900;

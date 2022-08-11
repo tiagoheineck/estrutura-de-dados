@@ -20,9 +20,9 @@ int calcula_idade(Pessoa* pessoa)
 {    
     time_t hoje = time(0);     
     time_t convertido = mktime(&pessoa->data_nascimento);              
-    printf("Hoje é %d e convertido deu %d anos \n", hoje, convertido);
-    int seconds = difftime(hoje,convertido) / 86400;
-    return floor(seconds);
+    printf("Hoje é %li e convertido deu %li anos \n", hoje, convertido);
+    int years = difftime(hoje,convertido);
+    return floor(years / 60 / 60 / 24 / 365);
 }
 
 char* inverte_nome(Pessoa* pessoa)
